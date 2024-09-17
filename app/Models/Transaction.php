@@ -28,7 +28,7 @@ class Transaction extends Model
         return $user->transactions()->create([
             'amount' => $amount,
             'type' => $type,
-            'reference' => strtoupper(uniqid('TX-').time()),
+            'reference' => strtoupper(uniqid('TX-') . time()),
             'ip_address' => request()->ip(),
             'narration' => $narration,
         ]);
