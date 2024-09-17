@@ -15,7 +15,8 @@ class TransactionData extends Data
         public string $narration,
         public float $amount,
         public string $status,
-    ) {}
+    ) {
+    }
 
     public static function stopOnFirstFailure(): bool
     {
