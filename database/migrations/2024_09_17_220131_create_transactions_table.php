@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('reference');
             $table->string('type');
-            $table->string('description');
+            $table->string('narration');
             $table->decimal('amount', 15, 2);
             $table->string('status')->default('pending');
+            $table->ipAddress();
             $table->timestamps();
         });
     }
