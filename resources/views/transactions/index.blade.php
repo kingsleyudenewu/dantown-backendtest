@@ -1,14 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Transactions') }}
-        </h2>
+        <div class="flex flex-wrap max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Transactions') }}
+            </h2>
+            <a href="{{ route('transactions.create') }}" class="bg-blue-500 hover:bg-blue-700 justify-end text-white font-bold py-2 px-4 rounded float-right">Create Transaction</a>
+        </div>
+{{--        <h2 class="font-semibold text-xl text-gray-800 leading-tight">--}}
+{{--            {{ __('Transactions') }}--}}
+{{--        </h2>--}}
+
+
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <x-flash-message :messages="session('message')" class="mt-2" />
+                <x-flash-message :messages="session('messages')" class="mt-2" />
+{{--                @if (session('message'))--}}
+{{--                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">--}}
+{{--                        <p>{{ session('message') }}</p>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
                 <div class="overflow-x-auto flex flex-col p-6 shadow-md">
                     <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg px-4 py-2">
                         <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -27,8 +40,8 @@
                                 <td class="py-3 px-6 text-left">{{ $transaction->user->email }}</td>
                                 <td class="py-3 px-6 text-left">{{ $transaction->amount }}</td>
                                 <td class="py-3 px-6 text-left">{{ $transaction->reference }}</td>
-                                <td class="py-3 px-6 text-left">{{ strtoupper($transaction->status) }}</td>
-                                <td class="py-3 px-6 text-left">
+                                <td class="py-3 px-6 text-left font-semibold">{{ strtoupper($transaction->status) }}</td>
+                                <td class="py-3 px-6 text-left font-semibold">
                                     {{ strtoupper($transaction->type) }}
                                 </td>
                                 <td>
