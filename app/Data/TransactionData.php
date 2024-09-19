@@ -2,7 +2,6 @@
 
 namespace App\Data;
 
-use App\Enums\TransactionStatusEnum;
 use App\Enums\TransactionTypeEnum;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Data;
