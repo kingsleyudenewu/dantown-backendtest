@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TransactionStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -18,6 +19,9 @@ class Transaction extends Model
 
         static::creating(function ($transaction) {
             $transaction->reference = strtoupper(uniqid('TX-') . time());
+            $transaction->status = TransactionStatusEnum::PENDING->value;
+            $transaction->ip_address = request()->ip();
+            $transaction->user_id = auth()->id();
         });
 
         // Log when a transaction is created

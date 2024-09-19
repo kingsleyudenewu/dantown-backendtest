@@ -11,10 +11,8 @@ class TransactionData extends Data
 {
     public function __construct(
         public string $type,
-        public int $user_id,
         public string $narration,
         public float $amount,
-        public string $status,
     ) {
     }
 
@@ -30,10 +28,8 @@ class TransactionData extends Data
     {
         return [
             'type' => ['required', 'string', Rule::enum(TransactionTypeEnum::class)],
-            'user_id' => ['required', 'integer', 'exists:projects,id'],
             'narration' => ['required', 'string', 'max:255'],
             'amount' => ['required', 'numeric', 'min:1', 'max:1000000'],
-            'status' => ['required', 'string', Rule::enum(TransactionStatusEnum::class)],
         ];
     }
 }
