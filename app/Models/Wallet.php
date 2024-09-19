@@ -16,13 +16,13 @@ class Wallet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function updateWalletBalance(float $amount, bool $credit = false)
+    public static function updateWalletBalance(User $user, float $amount, bool $credit = false)
     {
         $amount = ($credit ? 1 : -1) * $amount;
 
-        return tap(auth()->user()->wallet)->update([
-            'initial_amount' => auth()->user()->wallet->actual_amount,
-            'actual_amount' => auth()->user()->wallet->actual_amount + $amount,
+        return tap($user->wallet)->update([
+            'initial_amount' => $user->wallet->actual_amount,
+            'actual_amount' => $user->wallet->actual_amount + $amount,
         ]);
     }
 }
