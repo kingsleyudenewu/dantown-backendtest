@@ -20,6 +20,11 @@ class TransactionController extends Controller
         return view('transactions.index', compact('transactions'));
     }
 
+    public function create()
+    {
+        return view('transactions.create');
+    }
+
     public function store(Request $request)
     {
         $txData = TransactionData::from($request);
