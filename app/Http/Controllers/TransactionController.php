@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\ApproveTransaction;
 use App\Actions\RejectTransaction;
 use App\Data\TransactionData;
+use App\Enums\TransactionStatusEnum;
 use App\Models\SystemPool;
 use App\Models\Transaction;
 use App\Notifications\TransactionApproved;
@@ -15,7 +16,10 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('user')->latest()->paginate();
+        $transactions = Transaction::with('user')
+            ->where('status', TransactionStatusEnum::PENDING->value)
+            ->latest()
+            ->paginate();
 
         return view('transactions.index', compact('transactions'));
     }
